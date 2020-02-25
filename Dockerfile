@@ -6,10 +6,10 @@ RUN mkdir nginx && \
     mkdir -p /home/streaming-server && \
     cd tmp && \
     apk update && \
-    apk add --no-cache bash npm ffmpeg pcre-dev
+    apk add --no-cache bash npm ffmpeg pcre-dev make
 #     wget http://nginx.org/download/nginx-$NGINX_VER.tar.gz && \
 #     tar -xzf nginx-$NGINX_VER.tar.gz && \
-#     apk add --no-cache --virtual .buildenv gcc libc-dev make linux-headers openssl-dev zlib-dev && \
+#     apk add --no-cache --virtual .buildenv gcc libc-dev linux-headers openssl-dev zlib-dev && \
 #     cd nginx-$NGINX_VER && \
 #     ./configure --prefix=/nginx --with-http_ssl_module && \
 #     make && \

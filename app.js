@@ -34,8 +34,14 @@ const config = {
     //     tasks: [
     //         {
     //             app: 'rtsp',
+    //             mode: 'pull',
+    //             edge: 'rtsp://192.168.0.21',
+    //             rtsp_transport: 'tcp'
+    //         },
+    //         {
+    //             app: 'rtmp',
     //             mode: 'push',
-    //             edge: 'rtmp://127.0.0.1:554',
+    //             edge: 'rtmp://127.0.0.1/live',
     //             rtsp_transport: 'tcp'
     //         }
     //     ]
@@ -47,7 +53,14 @@ const server = new RtspServer({
     serverPort: 5554,
     clientPort: 6554,
     rtpPortStart: 10000,
-    rtpPortCount: 50
+    rtpPortCount: 50,
+    publishServerHooks: {
+        checkMount
+    },
+    clientServerHooks: {
+        checkMount,
+        clientClose
+    }
 });
 
 run();
@@ -57,6 +70,25 @@ async function run() {
     try {
         console.log("Starting RTSP server!")
         await server.start();
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function checkMount(req) {
+    try {
+        const url = new URL(req.uri);
+        console.log(url);
+
+        return true;
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function clientClose(mount) {
+    try {
+        console.log(`A client has disconnected from ${mount.path}`);
     } catch (e) {
         console.error(e);
     }

@@ -10,7 +10,7 @@ services:
       - "554:554"
       - "5554:5554"
       - "6554:6554"
-      - "10000:10000"
+      - "10000-10050:10000-10050"
     command: >
       bash -c "npm install && npm run start"
     volumes:
