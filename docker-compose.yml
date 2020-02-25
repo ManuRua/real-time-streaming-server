@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+  server:
+    build: .
+    container_name: streaming-server
+    working_dir: /home/streaming-server
+    ports:
+      - "8000:8000"
+      - "1935:1935"
+      - "554:554"
+    command: >
+      bash -c "npm install && npm run start"
+    volumes:
+      - ./:/home/streaming-server
+      - ./node_modules:/home/streaming-server/node_modules
