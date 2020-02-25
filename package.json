@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ManuRua/real-time-streaming-server#readme",
   "dependencies": {
-    "node-media-server": "^2.1.4"
+    "node-media-server": "^2.1.4",
+    "rtsp-streaming-server": "^2.0.5"
   }
 }

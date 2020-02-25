@@ -1,4 +1,5 @@
 const NodeMediaServer = require('node-media-server');
+const RtspServer = require('rtsp-streaming-server').default;
 
 const config = {
     logType: 3,
@@ -34,11 +35,29 @@ const config = {
     //         {
     //             app: 'rtsp',
     //             mode: 'push',
-    //             edge: 'rtsp://127.0.0.1',
+    //             edge: 'rtmp://127.0.0.1:554',
+    //             rtsp_transport: 'tcp'
     //         }
     //     ]
     // }
 };
 
 const nms = new NodeMediaServer(config)
+const server = new RtspServer({
+    serverPort: 5554,
+    clientPort: 6554,
+    rtpPortStart: 10000,
+    rtpPortCount: 50
+});
+
+run();
 nms.run();
+
+async function run() {
+    try {
+        console.log("Starting RTSP server!")
+        await server.start();
+    } catch (e) {
+        console.error(e);
+    }
+}
