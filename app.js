@@ -28,24 +28,24 @@ const config = {
                 dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
             }
         ]
+    },
+    relay: {
+        ffmpeg: '/usr/bin/ffmpeg',
+        tasks: [
+            {
+                app: 'pull',
+                mode: 'pull',
+                edge: 'rtsp://10.118.9.143',
+                rtsp_transport: 'tcp'
+            },
+            {
+                app: 'push',
+                mode: 'push',
+                edge: 'rtsp://127.0.0.1:5554',
+                rtsp_transport: 'tcp'
+            }
+        ]
     }
-    // relay: {
-    //     ffmpeg: '/usr/bin/ffmpeg',
-    //     tasks: [
-    //         {
-    //             app: 'rtsp',
-    //             mode: 'pull',
-    //             edge: 'rtsp://192.168.0.21',
-    //             rtsp_transport: 'tcp'
-    //         },
-    //         {
-    //             app: 'rtmp',
-    //             mode: 'push',
-    //             edge: 'rtmp://127.0.0.1/live',
-    //             rtsp_transport: 'tcp'
-    //         }
-    //     ]
-    // }
 };
 
 const nms = new NodeMediaServer(config)
