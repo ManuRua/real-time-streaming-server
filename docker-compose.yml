@@ -8,11 +8,8 @@ services:
       - "8000:8000"
       - "1935:1935"
       - "554:554"
-      - "5554:5554"
-      - "6554:6554"
-      - "10000-10050:10000-10050"
     command: >
-      bash -c "npm install && npm run start"
+      bash -c "npm install && npm run debug"
     volumes:
       - ./:/home/streaming-server
       - ./node_modules:/home/streaming-server/node_modules

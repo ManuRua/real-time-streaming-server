@@ -1,95 +1,44 @@
+const config = require('config');
 const NodeMediaServer = require('node-media-server');
-const RtspServer = require('rtsp-streaming-server').default;
+const https = require('https');
+const _ = require('lodash');
 
-const config = {
-    logType: 3,
+const mediaConfig = _.cloneDeep(config.get('media'));
+let nms;
 
-    rtmp: {
-        port: 1935,
-        chunk_size: 60000,
-        gop_cache: true,
-        ping: 30,
-        ping_timeout: 60
-    },
-    http: {
-        port: 8000,
-        webroot: './www',
-        mediaroot: './media/steamvideo',
-        allow_origin: '*'
-    },
-    trans: {
-        ffmpeg: '/usr/bin/ffmpeg',
-        tasks: [
-            {
-                app: 'live',
-                hls: true,
-                hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
-                dash: true,
-                dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
+const api = config.get('api');
+const req = https.request(api, res => {
+    res.on('data', data => {
+        const dataMock = {
+            relay: {
+                ffmpeg: '/usr/bin/ffmpeg',
+                tasks: [
+                    {
+                        app: 'live',
+                        mode: 'static',
+                        edge: 'rtsp://admin:PastView@192.168.0.13:554',
+                        name: 'cam1',
+                        rtsp_transport: 'tcp'
+                    }
+                ]
             }
-        ]
-    },
-    relay: {
-        ffmpeg: '/usr/bin/ffmpeg',
-        tasks: [
-            {
-                app: 'pull',
-                mode: 'pull',
-                edge: 'rtsp://10.118.9.143',
-                rtsp_transport: 'tcp'
-            },
-            {
-                app: 'push',
-                mode: 'push',
-                edge: 'rtsp://127.0.0.1:5554',
-                rtsp_transport: 'tcp'
-            }
-        ]
-    }
-};
+        };
+        const mediaServer = {
+            ...mediaConfig,
+            ...dataMock
+        };
+        nms = new NodeMediaServer(mediaServer);
+    });
 
-const nms = new NodeMediaServer(config)
-const server = new RtspServer({
-    serverPort: 5554,
-    clientPort: 6554,
-    rtpPortStart: 10000,
-    rtpPortCount: 50,
-    publishServerHooks: {
-        checkMount
-    },
-    clientServerHooks: {
-        checkMount,
-        clientClose
-    }
-});
+    // The whole response has been received. Launch media server.
+    res.on('end', () => {
+        console.log("Starting Node Media Server...");
+        nms.run();
+    });
+})
 
-run();
-nms.run();
+req.on('error', error => {
+    console.error(error)
+})
 
-async function run() {
-    try {
-        console.log("Starting RTSP server!")
-        await server.start();
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function checkMount(req) {
-    try {
-        const url = new URL(req.uri);
-        console.log(url);
-
-        return true;
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function clientClose(mount) {
-    try {
-        console.log(`A client has disconnected from ${mount.path}`);
-    } catch (e) {
-        console.error(e);
-    }
-}
+req.end();
