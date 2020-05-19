@@ -29,9 +29,15 @@
         }
     },
     "api": {
-        "hostname": "google.com",
-        "port": 443,
-        "path": "",
+        "hostname": "77.209.177.11",
+        "port": 80,
+        "path": "/api/cameras",
         "method": "GET"
-    }
+    },
+    "test": [
+        {
+            "cameraIp": "rtsp://admin:PastView@192.168.0.13:554",
+            "name": "cam1"
+        }
+    ]
 }

@@ -9,7 +9,8 @@ services:
       - "1935:1935"
       - "554:554"
     command: >
-      bash -c "npm install && npm run debug"
+      bash -c "npm install && npm run start"
+    restart: always
     volumes:
       - ./:/home/streaming-server
       - ./node_modules:/home/streaming-server/node_modules
