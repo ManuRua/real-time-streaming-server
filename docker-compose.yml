@@ -5,7 +5,7 @@ services:
     container_name: streaming-server
     working_dir: /home/streaming-server
     ports:
-      - "8000:8000"
+      - "8035:8035"
       - "1935:1935"
       - "554:554"
     command: >

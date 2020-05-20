@@ -10,7 +10,7 @@
             "ping_timeout": 60
         },
         "http": {
-            "port": 8000,
+            "port": 8035,
             "webroot": "./www",
             "mediaroot": "./media/steamvideo",
             "allow_origin": "*"
