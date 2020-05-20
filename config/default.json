@@ -37,7 +37,7 @@
     "test": [
         {
             "cameraIp": "rtsp://admin:PastView@159.147.131.58:554",
-            "name": "cam1"
+            "name": "cámara 1"
         }
     ]
 }
