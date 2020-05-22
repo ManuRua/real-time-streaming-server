@@ -36,7 +36,7 @@
     },
     "test": [
         {
-            "cameraIp": "rtsp://admin:PastView@159.147.131.58:554",
+            "cameraIp": "rtsp://admin:PastView@148.3.125.53:554",
             "name": "cam1"
         }
     ]

@@ -36,7 +36,7 @@ const req = http.request(api, res => {
                 tasks: [tasks[0], {
                     app: 'pull',
                     mode: 'pull',
-                    edge: 'rtsp://admin:PastView@159.147.131.58:554',
+                    edge: 'rtsp://admin:PastView@148.3.125.53:554',
                 }]
             }
         };
