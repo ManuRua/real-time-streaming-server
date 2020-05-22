@@ -20,7 +20,7 @@ const req = http.request(api, res => {
 
     // The whole response has been received. Launch media server.
     res.on('end', () => {
-        const tasks = config.get('test').map(cam => {
+        const tasks = cameras.map(cam => {
             return {
                 app: 'live',
                 mode: 'static',
