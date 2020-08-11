@@ -33,11 +33,7 @@ const req = http.request(api, res => {
         const relay = {
             relay: {
                 ffmpeg: '/usr/bin/ffmpeg',
-                tasks: [tasks[0], {
-                    app: 'pull',
-                    mode: 'pull',
-                    edge: 'rtsp://admin:PastView@148.3.125.53:554',
-                }]
+                tasks: [tasks[0]]
             }
         };
 
