@@ -27,7 +27,7 @@
   "homepage": "https://github.com/ManuRua/real-time-streaming-server#readme",
   "dependencies": {
     "config": "^3.3.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-media-server": "^2.2.2"
   },
   "devDependencies": {
