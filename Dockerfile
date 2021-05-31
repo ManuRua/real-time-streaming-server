@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer: imanurua@gmail.com
+LABEL maintainer: manuruaco@gmail.com
 
 RUN mkdir -p /home/streaming-server && \
     cd tmp && \

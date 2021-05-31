@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 services:
   server:
     build: .
@@ -14,3 +14,12 @@ services:
     volumes:
       - ./:/home/streaming-server
       - ./node_modules:/home/streaming-server/node_modules
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data

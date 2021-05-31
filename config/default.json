@@ -1,35 +1,35 @@
 {
-    "config": "default",
-    "media": {
-        "logType": 2,
-        "rtmp": {
-            "port": 1935,
-            "chunk_size": 60000,
-            "gop_cache": true,
-            "ping": 30,
-            "ping_timeout": 60
-        },
-        "http": {
-            "port": 8035,
-            "webroot": "./www",
-            "mediaroot": "./media/steamvideo",
-            "allow_origin": "*"
-        },
-        "trans": {
-            "ffmpeg": "/usr/bin/ffmpeg",
-            "tasks": [
-                {
-                    "app": "live",
-                    "hls": true,
-                    "hlsFlags": "[hls_time=2:hls_list_size=3:hls_flags=delete_segments]"
-                }
-            ]
-        }
+  "config": "default",
+  "media": {
+    "logType": 2,
+    "rtmp": {
+      "port": 1935,
+      "chunk_size": 60000,
+      "gop_cache": true,
+      "ping": 30,
+      "ping_timeout": 60
     },
-    "api": {
-        "hostname": "77.209.177.9",
-        "port": 80,
-        "path": "/api/cameras",
-        "method": "GET"
+    "http": {
+      "port": 8035,
+      "webroot": "./www",
+      "mediaroot": "./media/steamvideo",
+      "allow_origin": "*"
+    },
+    "trans": {
+      "ffmpeg": "/usr/bin/ffmpeg",
+      "tasks": [
+        {
+          "app": "live",
+          "hls": true,
+          "hlsFlags": "[hls_time=2:hls_list_size=3:hls_flags=delete_segments]"
+        }
+      ]
     }
+  },
+  "api": {
+    "hostname": "77.209.177.9",
+    "port": 80,
+    "path": "/api/cameras",
+    "method": "GET"
+  }
 }
