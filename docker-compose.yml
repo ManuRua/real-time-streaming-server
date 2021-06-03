@@ -7,7 +7,7 @@ services:
     ports:
       - "8035:8035"
       - "1935:1935"
-      - "5540:5544"
+      - "5540-5544:5540-5544"
     command: >
       bash -c "npm install && npm run start"
     restart: always
