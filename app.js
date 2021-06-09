@@ -25,7 +25,7 @@ const req = http.request(api, (res) => {
         app: "live",
         mode: "static",
         edge: cam.cameraIp,
-        name: cam.name.replace(/[^\w\s]/gi, ""),
+        name: cam.name.replace(/[^a-zA-Z0-9]/g, ""),
         rtsp_transport: "tcp",
       };
     });
