@@ -28,7 +28,7 @@
   "dependencies": {
     "config": "^3.3.6",
     "lodash": "^4.17.21",
-    "node-media-server": "^2.2.7"
+    "node-media-server": "^2.2.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

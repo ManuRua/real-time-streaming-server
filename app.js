@@ -25,7 +25,7 @@ const req = http.request(api, (res) => {
         app: "live",
         mode: "static",
         edge: cam.cameraIp,
-        name: cam.name,
+        name: cam.name.replace(/[^\w\s]/gi, ""),
         rtsp_transport: "tcp",
       };
     });
@@ -33,7 +33,7 @@ const req = http.request(api, (res) => {
     const relay = {
       relay: {
         ffmpeg: "/usr/bin/ffmpeg",
-        tasks: [tasks[0]],
+        tasks,
       },
     };
 
