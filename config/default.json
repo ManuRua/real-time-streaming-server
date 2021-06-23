@@ -11,7 +11,6 @@
     },
     "http": {
       "port": 8035,
-      "webroot": "./www",
       "mediaroot": "./media/steamvideo",
       "allow_origin": "*"
     },
